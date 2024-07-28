@@ -13,29 +13,43 @@ class PageTwo extends StatelessWidget {
     return Container(
       width: width,
       height: hieght,
-      color: Color(kDarkBlue.value),
+      color: Colors.white,
       child: Column(
         children: [
           const HeightSpacer(size: 65),
-          Padding(padding: EdgeInsets.all(8.h),
-          child: Image.asset("assets/images/page2.png"),
+          Padding(
+            padding: EdgeInsets.all(8.h),
+            child: Image.asset("assets/images/delivery_guy.png"),
           ),
-          const HeightSpacer(size: 40),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Stable Yourself \n With Your Ability",
-              textAlign: TextAlign.center,
-              style: appstyle(30, kLight, FontWeight.w500),),
-              const HeightSpacer(size: 10),
-              Padding(padding: EdgeInsets.all(8.h),
-              child: Text("We help you find your dream job according to your skillset, location and preference to build your carrer",
-              textAlign: TextAlign.center,
-               style: appstyle(14, Color(kLight.value), FontWeight.normal),),
-              )
-            ],
+          Container(
+            height: 300,
+            width: 350,
+            decoration: BoxDecoration(
+                color: Color.fromARGB(255, 19, 2, 72),
+                borderRadius: BorderRadius.circular(12)),
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(
+                    top: 50.0,
+                  ),
+                  child: Text(
+                    "All your kitchen Needs are Here",
+                    style: TextStyle(color: Colors.white, fontSize: 24),
+                  ),
+                ),
+                const HeightSpacer(size: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: Text(
+                    "it is a long established fact that a reader will be distracted by the readable.",
+                    textAlign: TextAlign.center,
+                    style: appstyle(14, Color(kLight.value), FontWeight.normal),
+                  ),
+                )
+              ],
+            ),
           )
-          
         ],
       ),
     );

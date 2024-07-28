@@ -7,10 +7,9 @@ import 'package:provider/provider.dart';
 
 import 'views/common/exports.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
- 
+
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => OnBoardNotifier()),
     ChangeNotifierProvider(create: (context) => LoginNotifier()),
@@ -30,7 +29,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return ScreenUtilInit(
         useInheritedMediaQuery: true,
         designSize: const Size(375, 812),

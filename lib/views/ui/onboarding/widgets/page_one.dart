@@ -5,38 +5,63 @@ import 'package:jobhub/views/common/app_style.dart';
 import 'package:jobhub/views/common/exports.dart';
 import 'package:jobhub/views/common/height_spacer.dart';
 
-class PageOne extends StatelessWidget {
+class PageOne extends StatefulWidget {
   const PageOne({super.key});
+
+  @override
+  State<PageOne> createState() => _PageOneState();
+}
+
+class _PageOneState extends State<PageOne> {
+  final PageController pageController = PageController();
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width,
       height: hieght,
-      color: Color(kDarkPurple.value),
+      color: Colors.white,
       child: Column(
         children: [
           const HeightSpacer(
             size: 70,
           ),
-          Image.asset("assets/images/page1.png"),
-          const HeightSpacer(size: 40),
-          Column(
-            children: [
-              ReusableText(
-                text: "Find your dream job",
-                style: appstyle(30, Color(kLight.value), FontWeight.w500),
-              ),
-              const HeightSpacer(size: 10),
-              Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 30.0.w),
-                child: Text(
-                  "We help you find your dream job according to your skillset, location and preference to build your carrer",
-                  textAlign: TextAlign.center,
-                  style: appstyle(14, Color(kLight.value), FontWeight.normal),
+          Image.asset("assets/images/delivery_guy.png"),
+          // const HeightSpacer(size: 40),
+          Container(
+            height: 300,
+            width: 350,
+            decoration: BoxDecoration(
+                color: Color.fromARGB(255, 19, 2, 72),
+                borderRadius: BorderRadius.circular(12)),
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(
+                    top: 50.0,
+                  ),
+                  child: Text(
+                    "All your kitchen Needs are Here",
+                    style: TextStyle(color: Colors.white, fontSize: 24),
+                  ),
                 ),
-              )
-            ],
+                const HeightSpacer(size: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: Text(
+                    "it is a long established fact that a reader will be distracted by the readable.",
+                    textAlign: TextAlign.center,
+                    style: appstyle(14, Color(kLight.value), FontWeight.normal),
+                  ),
+                )
+              ],
+            ),
           )
         ],
       ),
