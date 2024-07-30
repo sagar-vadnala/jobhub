@@ -5,6 +5,8 @@ import 'package:jobhub/views/ui/screens/profile/privacy_policy.dart';
 import 'package:jobhub/views/ui/screens/profile/terms_condition.dart';
 
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,13 +40,14 @@ class ProfilePage extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 25,
-                backgroundImage:
-                    const AssetImage('assets/images/delivery_guy.png'), // use network.image to fetch user image
+                backgroundImage: const AssetImage(
+                    'assets/images/delivery_guy.png'), // use network.image to fetch user image
                 child: Align(
                   alignment: Alignment.bottomRight,
                   child: CircleAvatar(
                     radius: 10,
-                    backgroundColor: Colors.green, // once appcolors are done will use them...
+                    backgroundColor: Colors
+                        .green, // once appcolors are done will use them...
                     child: const Icon(
                       Icons.edit,
                       color: Colors.white,
@@ -59,11 +62,15 @@ class ProfilePage extends StatelessWidget {
                 children: [
                   Text(
                     'Smith Mate',
-                    style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
                   ),
                   Text(
                     'smithmate@example.com',
-                    style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 14),
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.8), fontSize: 14),
                   ),
                 ],
               ),
@@ -76,12 +83,36 @@ class ProfilePage extends StatelessWidget {
 
   Widget _buildProfileOptions(BuildContext context) {
     final options = [
-      {'icon': Icons.edit, 'title': 'Edit Profile', 'page': EditProfileScreen()},
-      {'icon': Icons.lock, 'title': 'Change Password', 'page': ChangePasswordPage()},
-      {'icon': Icons.credit_card, 'title': 'Payment Method', 'page': CheckoutScreen()},
-      {'icon': Icons.shopping_bag, 'title': 'My Orders', 'page': MyOrdersPage()},
-      {'icon': Icons.privacy_tip, 'title': 'Privacy Policy', 'page': PrivacyPolicyScreen()},
-      {'icon': Icons.description, 'title': 'Terms & Conditions', 'page': TermsAndConditionsScreen()},
+      {
+        'icon': Icons.edit,
+        'title': 'Edit Profile',
+        'page': EditProfileScreen()
+      },
+      {
+        'icon': Icons.lock,
+        'title': 'Change Password',
+        'page': ChangePasswordPage()
+      },
+      {
+        'icon': Icons.credit_card,
+        'title': 'Payment Method',
+        'page': CheckoutScreen()
+      },
+      {
+        'icon': Icons.shopping_bag,
+        'title': 'My Orders',
+        'page': MyOrdersPage()
+      },
+      {
+        'icon': Icons.privacy_tip,
+        'title': 'Privacy Policy',
+        'page': PrivacyPolicyScreen()
+      },
+      {
+        'icon': Icons.description,
+        'title': 'Terms & Conditions',
+        'page': TermsAndConditionsScreen()
+      },
     ];
 
     return ListView.separated(
@@ -97,7 +128,8 @@ class ProfilePage extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => options[index]['page'] as Widget),
+              MaterialPageRoute(
+                  builder: (context) => options[index]['page'] as Widget),
             );
           },
         );
@@ -113,7 +145,8 @@ class ProfilePage extends StatelessWidget {
         child: Text('Logout', style: TextStyle(fontSize: 16)),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.green,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           padding: EdgeInsets.symmetric(vertical: 15),
           minimumSize: Size(double.infinity, 50),
         ),

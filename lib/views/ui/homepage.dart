@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobhub/views/ui/categories/vegetables/vegetables.dart';
 import 'package:jobhub/views/ui/screens/cart.dart';
 import 'package:jobhub/views/ui/screens/favorite_screen.dart';
 import 'package:jobhub/views/ui/screens/profile/profile.dart';
@@ -72,25 +73,22 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      child: Scaffold(
-        appBar: _getAppBar(),
-        body: _pages[_selectedIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.green,
-          unselectedItemColor: Colors.grey,
-          onTap: _onItemTapped,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.favorite), label: 'Favorites'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart), label: 'Cart'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          ],
-        ),
+    return Scaffold(
+      appBar: _getAppBar(),
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.grey,
+        onTap: _onItemTapped,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite), label: 'Favorites'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart), label: 'Cart'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
       ),
     );
   }
@@ -128,23 +126,51 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        _buildCategorySection(),
+        _buildCategorySection(context),
         _buildBanner(),
         _buildBestDealsSection(),
       ],
     );
   }
 
-  Widget _buildCategorySection() {
+  Widget _buildCategorySection(BuildContext context) {
     final List<Map<String, dynamic>> categories = [
-      {"name": "Vegetables\n& Fruits", "icon": Icons.apple},
-      {"name": "Dairy &\nBreakfast", "icon": Icons.egg},
-      {"name": "Cold Drinks\n& Juices", "icon": Icons.local_drink},
-      {"name": "Instant &\nFrozen Food", "icon": Icons.fastfood},
-      {"name": "Tea &\nCoffee", "icon": Icons.coffee},
-      {"name": "Atta, Rice\n& Dal", "icon": Icons.grain},
-      {"name": "Masala, Oil\n& Dry Fruits", "icon": Icons.spa},
-      {"name": "Chicken,\nMeat & Fish", "icon": Icons.set_meal},
+      {
+        "name": "Vegetables\n& Fruits",
+        "icon": Icons.apple,
+        "page": VegetablesFruitsPage()
+      },
+      {
+        "name": "Dairy &\nBreakfast",
+        "icon": Icons.egg,
+        "page": DairyBreakfastPage()
+      },
+      {
+        "name": "Cold Drinks\n& Juices",
+        "icon": Icons.local_drink,
+        "page": ColdDrinksJuicesPage()
+      },
+      {
+        "name": "Instant &\nFrozen Food",
+        "icon": Icons.fastfood,
+        "page": InstantFrozenFoodPage()
+      },
+      {"name": "Tea &\nCoffee", "icon": Icons.coffee, "page": TeaCoffeePage()},
+      {
+        "name": "Atta, Rice\n& Dal",
+        "icon": Icons.grain,
+        "page": AttaRiceDalPage()
+      },
+      {
+        "name": "Masala, Oil\n& Dry Fruits",
+        "icon": Icons.spa,
+        "page": MasalaOilDryFruitsPage()
+      },
+      {
+        "name": "Chicken,\nMeat & Fish",
+        "icon": Icons.set_meal,
+        "page": ChickenMeatFishPage()
+      },
     ];
     return Column(
       children: [
@@ -166,22 +192,31 @@ class HomeScreen extends StatelessWidget {
             crossAxisCount: 4,
             childAspectRatio: 0.8,
           ),
-          itemCount: 8,
+          itemCount: categories.length,
           itemBuilder: (context, index) {
-            return Column(
-              children: [
-                CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Colors.grey[200],
-                    // You would replace this with actual category images
-                    child: Image.asset("assets/images/delivery_guy.png")),
-                SizedBox(height: 8),
-                Text(
-                  categories[index]["name"],
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 12),
-                ),
-              ],
+            return InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => categories[index]["page"],
+                  ),
+                );
+              },
+              child: Column(
+                children: [
+                  CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Colors.grey[200],
+                      child: Icon(categories[index]["icon"], size: 30)),
+                  SizedBox(height: 8),
+                  Text(
+                    categories[index]["name"],
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ],
+              ),
             );
           },
         ),
@@ -277,6 +312,118 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+// class VegetablesFruitsPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Vegetables & Fruits'),
+//       ),
+//       body: Center(
+//         child: Text('Vegetables & Fruits Page'),
+//       ),
+//     );
+//   }
+// }
+
+class DairyBreakfastPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Dairy & Breakfast'),
+      ),
+      body: Center(
+        child: Text('Dairy & Breakfast Page'),
+      ),
+    );
+  }
+}
+
+class ColdDrinksJuicesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Cold Drinks & Juices'),
+      ),
+      body: Center(
+        child: Text('Cold Drinks & Juices Page'),
+      ),
+    );
+  }
+}
+
+class InstantFrozenFoodPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Instant & Frozen Food'),
+      ),
+      body: Center(
+        child: Text('Instant & Frozen Food Page'),
+      ),
+    );
+  }
+}
+
+class TeaCoffeePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Tea & Coffee'),
+      ),
+      body: Center(
+        child: Text('Tea & Coffee Page'),
+      ),
+    );
+  }
+}
+
+class AttaRiceDalPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Atta, Rice & Dal'),
+      ),
+      body: Center(
+        child: Text('Atta, Rice & Dal Page'),
+      ),
+    );
+  }
+}
+
+class MasalaOilDryFruitsPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Masala, Oil & Dry Fruits'),
+      ),
+      body: Center(
+        child: Text('Masala, Oil & Dry Fruits Page'),
+      ),
+    );
+  }
+}
+
+class ChickenMeatFishPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Chicken, Meat & Fish'),
+      ),
+      body: Center(
+        child: Text('Chicken, Meat & Fish Page'),
+      ),
     );
   }
 }
