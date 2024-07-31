@@ -3,6 +3,8 @@ import 'package:jobhub/views/ui/homepage.dart';
 import 'package:jobhub/views/ui/screens/login/register.dart';
 
 class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,8 +51,7 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       Icon(Icons.apple, color: Colors.black),
                       SizedBox(width: 8),
-                      Text('Login with Apple',
-                          style: TextStyle(color: Colors.black)),
+                      Text('Login with Apple', style: TextStyle(color: Colors.black)),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
@@ -68,11 +69,9 @@ class LoginScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.network('https://www.google.com/favicon.ico',
-                          height: 24),
+                      Image.network('https://www.google.com/favicon.ico', height: 24),
                       const SizedBox(width: 8),
-                      const Text('Login with Google',
-                          style: TextStyle(color: Colors.black)),
+                      const Text('Login with Google', style: TextStyle(color: Colors.black)),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
@@ -123,10 +122,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => HomePage()));
-                  },
+                  onPressed: () {},
                   child: const Text('Login'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
@@ -143,8 +139,7 @@ class LoginScreen extends StatelessWidget {
                     const Text("Didn't have an account?"),
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => SignUpScreen()));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignUpScreen()));
                       },
                       child: const Text(
                         'Register',
